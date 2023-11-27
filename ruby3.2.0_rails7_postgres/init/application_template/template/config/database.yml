@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password
+  pool: 5
+
+development:
+  <<: *default
+  database: %APPNAME%_development
+
+test:
+  <<: *default
+  database: %APPNAME%_test
+
+production:
+  <<: *default
+  database: %APPNAME%_production
+  username: %APPNAME%
+  password: <%= ENV['%APPNAME_UPPERCASE%_DATABASE_PASSWORD'] %>
